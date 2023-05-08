@@ -136,7 +136,7 @@ def main(cfg):
             if not 0 <= port <= 65535:
                 logging.info("Using port 8080 as %s isn't a valid port number" % (port))
                 port = 8080
-            address = ("0.0.0.0", port)
+            address = ("::", port)
             server_address = address[0]
             port = address[1]
             logging.info("Publishing cerberus status at http://%s:%s" % (server_address, port))
