@@ -4,7 +4,10 @@ import _thread
 import cerberus.database.client as dbcli
 from urllib.parse import urlparse, parse_qsl
 from http.server import HTTPServer, BaseHTTPRequestHandler
+import socket 
 
+class HTTPServerV6(HTTPServer):
+    address_family = socket.AF_INET6
 
 # Start a simple http server to publish the cerberus status file content
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -72,7 +75,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 def start_server(address):
     server = address[0]
     port = address[1]
-    httpd = HTTPServer(address, SimpleHTTPRequestHandler)
+    httpd = HTTPServerV6(address, SimpleHTTPRequestHandler)
     logging.info("Starting http server at http://%s:%s\n" % (server, port))
     try:
         _thread.start_new_thread(httpd.serve_forever, ())
