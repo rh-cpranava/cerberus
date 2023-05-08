@@ -4,6 +4,7 @@ import _thread
 import cerberus.database.client as dbcli
 from urllib.parse import urlparse, parse_qsl
 from http.server import HTTPServer, BaseHTTPRequestHandler
+import server
 
 class HTTPServerV6(HTTPServer):
     address_family = socket.AF_INET6
